@@ -1,0 +1,14 @@
+prefix=/Users/gaohangbo/Documents/ffmpeg/android/armv8-a
+exec_prefix=${prefix}
+libdir=/Users/gaohangbo/Documents/ffmpeg/android/armv8-a/lib
+includedir=/Users/gaohangbo/Documents/ffmpeg/android/armv8-a/include
+
+Name: libavutil
+Description: FFmpeg utility library
+Version: 57.18.100
+Requires: 
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lavutil 
+Libs.private: -pthread -lm
+Cflags: -I${includedir}

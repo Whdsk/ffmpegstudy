@@ -2,7 +2,7 @@
 // Created by xu fulong on 2022/5/13.
 //
 
-#include <cut_video.h>
+#include "cut_video.h"
 
 #ifdef __ANDROID__
 #include <android/log.h>

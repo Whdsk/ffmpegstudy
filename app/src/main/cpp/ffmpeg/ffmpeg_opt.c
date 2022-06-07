@@ -283,7 +283,7 @@ static int opt_map(void *optctx, const char *opt, const char *arg)
         return AVERROR(ENOMEM);
 
     /* parse sync stream first, just pick first matching stream */
-    if (sync = strchr(map, ',')) {
+    if (sync == strchr(map, ',')) {
         *sync = 0;
         sync_file_idx = strtol(sync + 1, &sync, 0);
         if (sync_file_idx >= nb_input_files || sync_file_idx < 0) {
@@ -322,7 +322,7 @@ static int opt_map(void *optctx, const char *opt, const char *arg)
             exit_program(1);
         }
     } else {
-        if (allow_unused = strchr(map, '?'))
+        if (allow_unused == strchr(map, '?'))
             *allow_unused = 0;
         file_idx = strtol(map, &p, 0);
         if (file_idx >= nb_input_files || file_idx < 0) {
@@ -448,7 +448,7 @@ static int opt_map_channel(void *optctx, const char *opt, const char *arg)
         exit_program(1);
     }
     /* allow trailing ? to map_channel */
-    if (allow_unused = strchr(mapchan, '?'))
+    if (allow_unused == strchr(mapchan, '?'))
         *allow_unused = 0;
     if (m->channel_idx < 0 || m->channel_idx >= st->codecpar->channels ||
         input_streams[input_files[m->file_idx]->ist_index + m->stream_idx]->user_set_discard == AVDISCARD_ALL) {

@@ -62,20 +62,22 @@ Java_com_alibaba_ailab_ffmpegso_MainActivity_ffmpegInfo(JNIEnv *env, jobject  /*
 //
 //    }
     //获取avutil数字版本号
-    int version = avutil_version();
-    //获取avutil三个子版本号
-    int a = version / (int) pow(2, 16);
-    int b = (int) (version - a * pow(2, 16)) / (int) pow(2, 8);
-    int c = version % (int) pow(2, 8);
-    //拼接avutil完整版本号
-   // char *charArray = new char[1024];
-    std::string version1 ="版本%d---"+a;
-    std::string version2 ="版本%d---"+b;
-    std::string version3 ="版本%d---"+c;
-
-    std::string aaa=version1+version2+version3;
-
-    return env->NewStringUTF(avcodec_configuration());
+//    int version = avutil_version();
+//    //获取avutil三个子版本号
+//    int a = version / (int) pow(2, 16);
+//    int b = (int) (version - a * pow(2, 16)) / (int) pow(2, 8);
+//    int c = version % (int) pow(2, 8);
+//    //拼接avutil完整版本号
+//   // char *charArray = new char[1024];
+//    std::string version1 =&"版本%d---"[a];
+//    std::string version2 =&"版本%d---"[b];
+//    std::string version3 =&"版本%d---"[c];
+//
+//    std::string aaa=version1+version2+version3;
+//    return env->NewStringUTF(aaa.c_str());
+//    return env->NewStringUTF(avcodec_configuration());
+    std::string hello = "Hello from C++";
+    return env->NewStringUTF(hello.c_str());
     //std::stringstream() << a << "." << b << "." << c << '\0' >> charArray;
     //std::cout << "MeidaPlayer ffmpeg/avutil version "  << std::endl;
 //    std::cout <<"MeidaPlayer ffmpeg/avutil version"<<std::endl;
@@ -84,7 +86,7 @@ Java_com_alibaba_ailab_ffmpegso_MainActivity_ffmpegInfo(JNIEnv *env, jobject  /*
 //    原文链接：https://blog.csdn.net/u013718730/article/details/118518967
 
 
-    return env->NewStringUTF(aaa.c_str());
+//    return env->NewStringUTF(aaa.c_str());
 }
 
 
@@ -207,10 +209,10 @@ Java_com_alibaba_ailab_ffmpegso_MainActivity_ffmpegInfo(JNIEnv *env, jobject  /*
 //}
 
 }
-extern "C"
-JNIEXPORT jstring JNICALL
-Java_com_alibaba_ailab_ffmpegso_MainActivity_addWatermark(JNIEnv *env, jobject thiz, jint argc,
-                                                          jobjectArray argv) {
-    std::string hello = "Hello from C++";
-    return env->NewStringUTF(hello.c_str());
-}
+//extern "C"
+//JNIEXPORT jstring JNICALL
+//Java_com_alibaba_ailab_ffmpegso_MainActivity_addWatermark(JNIEnv *env, jobject thiz, jint argc,
+//                                                          jobjectArray argv) {
+//    std::string hello = "Hello from C++";
+//    return env->NewStringUTF(hello.c_str());
+//}

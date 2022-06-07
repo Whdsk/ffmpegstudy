@@ -18,9 +18,11 @@ set(ffmpeg_lib_dir ${CMAKE_SOURCE_DIR}/../libs/${ANDROID_ABI})
 set(ffmpeg_head_dir ${CMAKE_SOURCE_DIR})
 
 # 2. 添加头文件目录
+#src下面目录
+include_directories(${ffmpeg_head_dir})
 include_directories(${ffmpeg_head_dir}/ffmpeg)
 include_directories(${ffmpeg_head_dir}/include)
-#include_directories(src/main/cpp/metadata)
+
 include_directories(${ffmpeg_head_dir}/metadata)
 add_library( # Sets the name of the library.
         media-handle
@@ -65,54 +67,54 @@ elseif(${CMAKE_ANDROID_ARCH_ABI} MATCHES "arm64-v8a")
 endif()
 
 # 3. 添加ffmpeg相关的so库
-add_library( avutil
-        SHARED
-        IMPORTED )
-set_target_properties( avutil
-        PROPERTIES IMPORTED_LOCATION
-        ${ffmpeg_lib_dir}/libavutil.so )
-
-add_library( swresample
-        SHARED
-        IMPORTED )
-set_target_properties( swresample
-        PROPERTIES IMPORTED_LOCATION
-        ${ffmpeg_lib_dir}/libswresample.so )
-
-add_library( avcodec
-        SHARED
-        IMPORTED )
-set_target_properties( avcodec
-        PROPERTIES IMPORTED_LOCATION
-        ${ffmpeg_lib_dir}/libavcodec.so )
-
-add_library( avfilter
-        SHARED
-        IMPORTED)
-set_target_properties( avfilter
-        PROPERTIES IMPORTED_LOCATION
-        ${ffmpeg_lib_dir}/libavfilter.so )
-
-add_library( swscale
-        SHARED
-        IMPORTED)
-set_target_properties( swscale
-        PROPERTIES IMPORTED_LOCATION
-        ${ffmpeg_lib_dir}/libswscale.so )
-
-add_library( avformat
-        SHARED
-        IMPORTED)
-set_target_properties( avformat
-        PROPERTIES IMPORTED_LOCATION
-        ${ffmpeg_lib_dir}/libavformat.so )
-
-add_library( avdevice
-        SHARED
-        IMPORTED)
-set_target_properties( avdevice
-        PROPERTIES IMPORTED_LOCATION
-        ${ffmpeg_lib_dir}/libavdevice.so )
+#add_library( avutil
+#        SHARED
+#        IMPORTED )
+#set_target_properties( avutil
+#        PROPERTIES IMPORTED_LOCATION
+#        ${ffmpeg_lib_dir}/libavutil.so )
+#
+#add_library( swresample
+#        SHARED
+#        IMPORTED )
+#set_target_properties( swresample
+#        PROPERTIES IMPORTED_LOCATION
+#        ${ffmpeg_lib_dir}/libswresample.so )
+#
+#add_library( avcodec
+#        SHARED
+#        IMPORTED )
+#set_target_properties( avcodec
+#        PROPERTIES IMPORTED_LOCATION
+#        ${ffmpeg_lib_dir}/libavcodec.so )
+#
+#add_library( avfilter
+#        SHARED
+#        IMPORTED)
+#set_target_properties( avfilter
+#        PROPERTIES IMPORTED_LOCATION
+#        ${ffmpeg_lib_dir}/libavfilter.so )
+#
+#add_library( swscale
+#        SHARED
+#        IMPORTED)
+#set_target_properties( swscale
+#        PROPERTIES IMPORTED_LOCATION
+#        ${ffmpeg_lib_dir}/libswscale.so )
+#
+#add_library( avformat
+#        SHARED
+#        IMPORTED)
+#set_target_properties( avformat
+#        PROPERTIES IMPORTED_LOCATION
+#        ${ffmpeg_lib_dir}/libavformat.so )
+#
+#add_library( avdevice
+#        SHARED
+#        IMPORTED)
+#set_target_properties( avdevice
+#        PROPERTIES IMPORTED_LOCATION
+#        ${ffmpeg_lib_dir}/libavdevice.so )
 
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
@@ -127,6 +129,14 @@ add_library( # Sets the name of the library.
 
         # Provides a relative path to your source file(s).
         native-lib.cpp)
+
+add_library( ffmpeg
+        SHARED
+        IMPORTED )
+#编译的ffmpeg.so 厉害啊
+set_target_properties( ffmpeg
+        PROPERTIES IMPORTED_LOCATION
+        ${ffmpeg_lib_dir}/libffmpeg.so )
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -147,18 +157,22 @@ find_library( # Sets the name of the path variable.
 # 指定编译目标库时，cmake要链接的库
 target_link_libraries( # Specifies the target library.
         media-handle
+        #少添加了第三方的so文件
+        ffmpeg
         # 指定目标库，native-lib 是在上面 add_library 中配置的目标库
         ffmpegso
 
         # 4. 连接 FFmpeg 相关的库
-        avutil
-        swresample
-        avcodec
-        avfilter
-        swscale
-        avformat
-        avdevice
-
+#        avutil
+#        swresample
+#        avcodec
+#        avfilter
+#        swscale
+#        avformat
+#        avdevice
+        -landroid #native_window
+        -ljnigraphics #bitmap
+        -lOpenSLES #openSLES
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib})

@@ -1,6 +1,5 @@
 package com.alibaba.ailab.ffmpegso;
 
-import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.annotation.IntDef;
@@ -143,6 +142,7 @@ public class FFmpegCmd {
 //
 //    private native static String handleProbe(String[] commands);
 
+    //回调
     public static void onProgressCallback(int position, int duration, @FFmpegState int state) {
         Log.e(TAG, "onProgress position=" + position
                 + "--duration=" + duration + "--state=" + state);

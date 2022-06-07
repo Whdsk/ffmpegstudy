@@ -19,7 +19,7 @@ void log_callback(void *, int, const char *, va_list);
 void init(JNIEnv *env) {
     ff_env = env;
     err_count = 0;
-    ff_class = (*env)->FindClass(env, "com/frank/ffmpeg/FFmpegCmd");
+    ff_class = (*env)->FindClass(env, "com/alibaba/ailab/ffmpegso/FFmpegCmd");
     ff_method = (*env)->GetStaticMethodID(env, ff_class, "onProgressCallback", "(III)V");
     msg_method = (*env)->GetStaticMethodID(env, ff_class, "onMsgCallback", "(Ljava/lang/String;)V");
 }

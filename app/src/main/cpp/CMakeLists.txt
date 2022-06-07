@@ -22,39 +22,40 @@ include_directories(${ffmpeg_head_dir}/ffmpeg)
 include_directories(${ffmpeg_head_dir}/include)
 #include_directories(src/main/cpp/metadata)
 include_directories(${ffmpeg_head_dir}/metadata)
-add_library( # Sets the name of the library.
-        media-handle
 
-        # Sets the library as a shared library.
-        SHARED
-
-        # Provides a relative path to your source file(s).
-
-        ${ffmpeg_head_dir}/ffmpeg/cmdutils.c
-        ${ffmpeg_head_dir}/ffmpeg/ffmpeg.c
-        ${ffmpeg_head_dir}/ffmpeg/ffmpeg_filter.c
-        ${ffmpeg_head_dir}/ffmpeg/ffmpeg_opt.c
-        ${ffmpeg_head_dir}/ffmpeg_cmd.c
-        ${ffmpeg_head_dir}/ffmpeg/ffprobe.c
-        ${ffmpeg_head_dir}/ffmpeg/ffmpeg_hw.c
-        ${ffmpeg_head_dir}/audio_player.cpp
-        ${ffmpeg_head_dir}/opensl_audio_player.cpp
-        ${ffmpeg_head_dir}/video_player.cpp
-        ${ffmpeg_head_dir}/ffmpeg_pusher.cpp
-        ${ffmpeg_head_dir}/video_filter.c
-        ${ffmpeg_head_dir}/ffprobe_cmd.cpp
-        ${ffmpeg_head_dir}/cut_video.cpp
-        ${ffmpeg_head_dir}/visualizer/fft.cpp
-        ${ffmpeg_head_dir}/visualizer/fixed_fft.cpp
-        ${ffmpeg_head_dir}/visualizer/block_queue.c
-        ${ffmpeg_head_dir}/visualizer/frank_visualizer.cpp
-        ${ffmpeg_head_dir}/visualizer/frank_visualizer_jni.cpp
-        ${ffmpeg_head_dir}/visualizer/window.cpp
-        ${ffmpeg_head_dir}/metadata/media_retriever.cpp
-        ${ffmpeg_head_dir}/metadata/media_retriever_jni.cpp
-        ${ffmpeg_head_dir}/metadata/metadata_util.c
-        ${ffmpeg_head_dir}/metadata/ffmpeg_media_retriever.c
-        )
+#add_library( # Sets the name of the library.
+#        media-handle
+#
+#        # Sets the library as a shared library.
+#        SHARED
+#
+#        # Provides a relative path to your source file(s).
+#
+#        ${ffmpeg_head_dir}/ffmpeg/cmdutils.c
+#        ${ffmpeg_head_dir}/ffmpeg/ffmpeg.c
+#        ${ffmpeg_head_dir}/ffmpeg/ffmpeg_filter.c
+#        ${ffmpeg_head_dir}/ffmpeg/ffmpeg_opt.c
+#        ${ffmpeg_head_dir}/ffmpeg_cmd.c
+#        ${ffmpeg_head_dir}/ffmpeg/ffprobe.c
+#        ${ffmpeg_head_dir}/ffmpeg/ffmpeg_hw.c
+#        ${ffmpeg_head_dir}/audio_player.cpp
+#        ${ffmpeg_head_dir}/opensl_audio_player.cpp
+#        ${ffmpeg_head_dir}/video_player.cpp
+#        ${ffmpeg_head_dir}/ffmpeg_pusher.cpp
+#        ${ffmpeg_head_dir}/video_filter.c
+#        ${ffmpeg_head_dir}/ffprobe_cmd.cpp
+#        ${ffmpeg_head_dir}/cut_video.cpp
+#        ${ffmpeg_head_dir}/visualizer/fft.cpp
+#        ${ffmpeg_head_dir}/visualizer/fixed_fft.cpp
+#        ${ffmpeg_head_dir}/visualizer/block_queue.c
+#        ${ffmpeg_head_dir}/visualizer/frank_visualizer.cpp
+#        ${ffmpeg_head_dir}/visualizer/frank_visualizer_jni.cpp
+#        ${ffmpeg_head_dir}/visualizer/window.cpp
+#        ${ffmpeg_head_dir}/metadata/media_retriever.cpp
+#        ${ffmpeg_head_dir}/metadata/media_retriever_jni.cpp
+#        ${ffmpeg_head_dir}/metadata/metadata_util.c
+#        ${ffmpeg_head_dir}/metadata/ffmpeg_media_retriever.c
+#        )
 
 if(${CMAKE_ANDROID_ARCH_ABI} MATCHES "armeabi-v7a")
     include_directories(src/main/cpp/include/armeabi-v7a)
@@ -146,7 +147,7 @@ find_library( # Sets the name of the path variable.
 # build script, prebuilt third-party libraries, or system libraries.
 # 指定编译目标库时，cmake要链接的库
 target_link_libraries( # Specifies the target library.
-        media-handle
+        #media-handle
         # 指定目标库，native-lib 是在上面 add_library 中配置的目标库
         ffmpegso
 
